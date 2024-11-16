@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charadas Interativas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Hidden_Site.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #respostaCorreta {
+            margin-top: 20px;
+            display: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .link-clicavel {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link-clicavel:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>O Silêncio quer te ouvir</h1>
+        <p>Digite sua resposta:</p>
+        <input type="text" id="resposta" placeholder="Sua resposta aqui">
+        <button onclick="verificarResposta()">Enviar</button>
+
+        <div id="respostaCorreta"></div>
+    </div>
+
+    <script>
+        function verificarResposta() {
+            const respostaInput = document.getElementById('resposta');
+            const resposta = respostaInput.value.trim().toLowerCase();
+
+            if (resposta === 'conhecimento') {
+                document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+                document.getElementById('respostaCorreta').style.display = 'block';
+            } else if (resposta === 'bardo') { // Corrigido para minúsculas
+                const link = 'https://youtu.be/AL-iJESCfgU';
+                respostaInput.value = ''; // Limpa o campo de entrada
+
+                // Exibe o link no próprio campo de entrada
+                respostaInput.type = 'text';
+                respostaInput.value = link;
+                respostaInput.style.color = '#007bff';
+                respostaInput.style.textDecoration = 'underline';
+                respostaInput.style.cursor = 'pointer';
+                respostaInput.readOnly = true;
+
+                // Adiciona evento de clique ao campo
+                respostaInput.onclick = function () {
+                    window.open(link, '_blank');
+                };
+            } else {
+                alert('O silêncio permanece...');
+            }
+        }
+    </script>
+</body>
+</html>
