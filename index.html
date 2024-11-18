@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background-image: url('Hidden_Site.png');
-            background-size: cover;
+            background-size: cover; /* Ajuste para cobrir a tela */
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -74,8 +74,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>O Silêncio quer te ouvir</h1>
-        <p>Digite sua resposta:</p>
+        <h1 id="titulo">O Silêncio quer te ouvir</h1>
+        <p id="instrucao">Digite sua resposta:</p>
         <input type="text" id="resposta" placeholder="Sua resposta aqui">
         <button onclick="verificarResposta()">Enviar</button>
 
@@ -88,13 +88,15 @@
             const resposta = respostaInput.value.trim().toLowerCase();
 
             if (resposta === 'conhecimento') {
-                document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
-                document.getElementById('respostaCorreta').style.display = 'block';
-            } else if (resposta === 'bardo') { // Corrigido para minúsculas
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "Eu não posso falar sobre Ele";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            } else if (resposta === 'bardo') {
                 const link = 'https://youtu.be/AL-iJESCfgU';
-                respostaInput.value = ''; // Limpa o campo de entrada
-
-                // Exibe o link no próprio campo de entrada
+                respostaInput.value = '';
                 respostaInput.type = 'text';
                 respostaInput.value = link;
                 respostaInput.style.color = '#007bff';
@@ -102,14 +104,32 @@
                 respostaInput.style.cursor = 'pointer';
                 respostaInput.readOnly = true;
 
-                // Adiciona evento de clique ao campo
                 respostaInput.onclick = function () {
                     window.open(link, '_blank');
                 };
+            } else if (resposta === 'demencia') {
+                // Atualiza o estilo do fundo
+                document.body.style.backgroundImage = "url('Demencia.jpg')";
+                document.body.style.backgroundSize = "contain"; // Ajusta para caber dentro da tela
+                document.body.style.backgroundRepeat = "no-repeat";
+                document.body.style.backgroundPosition = "center";
+
+                // Atualiza o título e remove os elementos
+                document.getElementById('titulo').innerText = "A Demência se manifesta";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
             } else {
                 alert('O silêncio permanece...');
             }
         }
+         // Bloqueio de F12 e botão direito
+         document.addEventListener("contextmenu", (e) => e.preventDefault());
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
