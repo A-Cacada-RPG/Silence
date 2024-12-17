@@ -134,6 +134,158 @@
                 document.querySelector("button").style.display = "none";
         }
 
+        else if (resposta === 'secrets') {
+    document.getElementById('titulo').innerText = "Bem-vindo ao Labirinto da Demência";
+
+    // Remove os elementos existentes
+    document.getElementById('instrucao').style.display = "none";
+    respostaInput.style.display = "none";
+    document.querySelector("button").style.display = "none";
+
+    // Cria o container do jogo
+    const gameContainer = document.createElement('div');
+    gameContainer.id = 'gameContainer';
+    gameContainer.style.position = 'relative';
+    gameContainer.style.width = '300px';
+    gameContainer.style.height = '300px';
+    gameContainer.style.border = '2px solid white';
+    gameContainer.style.margin = '20px auto';
+    gameContainer.style.backgroundColor = 'black';
+    gameContainer.style.display = 'grid';
+    gameContainer.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    gameContainer.style.gridTemplateRows = 'repeat(5, 1fr)';
+
+    const respostaCorreta = document.getElementById('respostaCorreta');
+    respostaCorreta.appendChild(gameContainer);
+    respostaCorreta.style.display = 'block';
+
+    // Variáveis globais
+    let playerPosition = 0;
+    let currentPhase = 1;
+    const colCount = 5; // Número de colunas
+    const totalCells = 25;
+
+    // Fases do jogo
+    const phases = [
+        { goal: 24, resetCells: [4, 6, 12, 18, 20], walls: [7, 8, 13, 17] }, // Fase 1
+        { goal: 20, resetCells: [2, 10, 17], walls: [11, 16, 18] }, // Fase 2
+        { goal: 23, resetCells: [4, 14, 19], walls: [5, 9, 15, 21] }  // Fase 3
+    ];
+
+    // Função para criar uma nova fase
+    function loadPhase(phase) {
+        gameContainer.innerHTML = ''; // Limpa o labirinto anterior
+        const cells = [];
+
+        // Cria as células do labirinto
+        for (let i = 0; i < totalCells; i++) {
+            const cell = document.createElement('div');
+            cell.style.width = '100%';
+            cell.style.height = '100%';
+            cell.style.backgroundColor = '#444'; // Todas as células ficam ocultas
+            cells.push(cell);
+            gameContainer.appendChild(cell);
+        }
+
+        // Define a posição inicial do jogador e da meta
+        playerPosition = 0;
+        updateCell(playerPosition, '#007bff'); // Azul: jogador
+        updateCell(phase.goal, '#28a745'); // Verde: meta
+
+        // Função para atualizar a cor de uma célula
+        function updateCell(index, color) {
+            cells[index].style.backgroundColor = color;
+        }
+
+        // Movimento do jogador
+        document.addEventListener('keydown', handleMovement);
+
+        function handleMovement(event) {
+            let newPosition = playerPosition;
+
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (playerPosition >= colCount) newPosition -= colCount;
+                    break;
+                case 'ArrowDown':
+                    if (playerPosition < totalCells - colCount) newPosition += colCount;
+                    break;
+                case 'ArrowLeft':
+                    if (playerPosition % colCount !== 0) newPosition -= 1;
+                    break;
+                case 'ArrowRight':
+                    if ((playerPosition + 1) % colCount !== 0) newPosition += 1;
+                    break;
+            }
+
+            // Verifica se é uma parede
+            if (phase.walls.includes(newPosition)) {
+                alert('Você bateu em uma parede!');
+                return;
+            }
+
+            // Verifica se é uma casa de reinício
+            if (phase.resetCells.includes(newPosition)) {
+                alert('Você caiu em uma armadilha! Reiniciando o jogo...');
+                location.reload(); // Recarrega a página inteira
+                return;
+            }
+
+            // Atualiza posição do jogador
+            if (newPosition !== playerPosition) {
+                updateCell(playerPosition, '#444'); // Reseta a cor da célula anterior
+                playerPosition = newPosition;
+                updateCell(playerPosition, '#007bff'); // Atualiza a nova posição
+            }
+
+            // Verifica se o jogador chegou à meta
+            if (playerPosition === phase.goal) {
+                document.removeEventListener('keydown', handleMovement); // Remove o evento para evitar conflitos
+                if (currentPhase < phases.length) {
+                    alert(`Parabéns! Fase ${currentPhase} concluída!`);
+                    currentPhase++;
+                    loadPhase(phases[currentPhase - 1]);
+                } else {
+                    alert('duto o que mevos uo pescaremo oan asspa ed mu ohons dentro de ohonsum!');
+                    location.reload(); // Recarrega a página inteira
+                    return;
+                }
+            }
+        }
+    }
+
+    // Carrega a primeira fase
+    loadPhase(phases[0]);
+}
+
+    else if (resposta === 'edgar allan poe') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "Vejo suas notórias habilidades, há um tempo. θνητός";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+            else if (resposta === 'mortal') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "wtepn://r-cpcldv-ipv.gttclb.xo/EhzYuctCPB-Rris/";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+            else if (resposta === 'pavor') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "A palavra é a chave";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+
             else {
                 alert('O silêncio permanece...');
             }
@@ -148,4 +300,3 @@
     </script>
 </body>
 </html>
-
