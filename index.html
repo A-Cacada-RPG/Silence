@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: black;
             background-image: url('Hidden_Site.png');
             background-size: cover; /* Ajuste para cobrir a tela */
             background-position: center;
@@ -284,6 +285,49 @@
                 respostaInput.style.display = "none";
                 document.querySelector("button").style.display = "none";
             }
+
+            else if (resposta === 'sua resposta') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "Engraçadinho...";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+            else if (resposta === 'abundancia') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "Neythan, você ainda ouve seu chamado?";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+            else if (resposta === '96') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               document.getElementById('titulo').innerText = "Ainda não, esse lugar ainda não...";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+            else if (resposta === '...') {
+               // document.getElementById('respostaCorreta').innerHTML = '<img src="sua-imagem.jpg" alt="Imagem cheia de conhecimento">';
+               // document.getElementById('respostaCorreta').style.display = 'block';
+               
+               document.body.style.backgroundImage = "none";
+               
+               
+               
+               document.getElementById('titulo').innerText = "gRp-Rhsiacoan//n:a.tpcgdRnoia-suhotl.eca";
+                document.getElementById('instrucao').style.display = "none";
+                respostaInput.style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+
+
 
 
             else {
