@@ -314,34 +314,54 @@
             }
 
             else if (resposta === '...') {
-    // Remove a imagem de fundo e força o fundo preto
-    document.body.style.backgroundImage = "none";
-    document.body.style.backgroundColor = "black";
+            // Remove a imagem de fundo e força o fundo preto
+            document.body.style.backgroundImage = "none";
+            document.body.style.backgroundColor = "black";
 
-    // Seleciona o container principal e redefine seu conteúdo
-    const container = document.querySelector(".container");
-    container.innerHTML = `
-      <h1 id="novoTitulo">...</h1>
-      <p id="novaInstrucao">Sua nova resposta:</p>
-      <input type="text" id="novaResposta" placeholder="..." style="width:300px; padding:10px; font-size:16px; border-radius:5px; border:1px solid #ccc;">
-      <button onclick="verificarNovaResposta()" style="padding: 10px 20px; font-size:16px; border:none; border-radius:5px; background-color:#dc3545; color:white; cursor:pointer;">Enviar</button>
-      <div id="respostaNova"></div>
-    `;
+            // Seleciona o container principal e redefine seu conteúdo
+            const container = document.querySelector(".container");
+            container.innerHTML = `
+            <h1 id="novoTitulo">...</h1>
+            <p id="novaInstrucao">Sua nova resposta:</p>
+            <input type="text" id="novaResposta" placeholder="..." style="width:300px; padding:10px; font-size:16px; border-radius:5px; border:1px solid #ccc;">
+            <button onclick="verificarNovaResposta()" style="padding: 10px 20px; font-size:16px; border:none; border-radius:5px; background-color:#dc3545; color:white; cursor:pointer;">Enviar</button>
+            <div id="respostaNova"></div>
+            `;
 
-    // Cria a função para verificar a nova resposta
-    window.verificarNovaResposta = function() {
-        const novaRespostaInput = document.getElementById('novaResposta');
-        const novaResposta = novaRespostaInput.value.trim().toLowerCase();
+            // Cria a função para verificar a nova resposta
+            window.verificarNovaResposta = function() {
+             const novaRespostaInput = document.getElementById('novaResposta');
+                const novaResposta = novaRespostaInput.value.trim().toLowerCase();
 
-        // Exemplo de verificação - personalize conforme sua necessidade
-        if (novaResposta === 'eu quebro meu voto') {
-            // Atualiza o título e remove os elementos de input e botão
-            document.getElementById('novoTitulo').innerText = "gRp-Rhsiacoan//n:a.tpcgdRnoia-suhotl.eca";
-            document.getElementById('novaInstrucao').style.display = "none";
-            novaRespostaInput.style.display = "none";
-            container.querySelector("button").style.display = "none";
-        } else {
-            alert("Quebre o.");
+                // Exemplo de verificação - personalize conforme sua necessidade
+                if (novaResposta === 'eu quebro meu voto') {
+                 // Atualiza o título e remove os elementos de input e botão
+                 document.getElementById('novoTitulo').innerText = "gRp-Rhsiacoan//n:a.tpcgdRnoia-suhotl.eca";
+                 document.getElementById('novaInstrucao').style.display = "none";
+                 novaRespostaInput.style.display = "none";
+                 container.querySelector("button").style.display = "none";
+                } else {
+                 alert("Quebre o.");
+                    }
+                }
+            }
+
+
+            
+
+
+
+            else {
+                alert('O silêncio permanece...');
+            }
         }
-    }
-}
+         // Bloqueio de F12 e botão direito
+         document.addEventListener("contextmenu", (e) => e.preventDefault());
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
